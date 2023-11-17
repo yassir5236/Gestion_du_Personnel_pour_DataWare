@@ -1,0 +1,46 @@
+
+use mydata;
+CREATE TABLE équipes (
+    Équipes_ID INT PRIMARY KEY,
+    Équipe_Nom VARCHAR(40),
+    Création_Équipe DATE
+);
+
+CREATE TABLE Personnel (
+    Personnel_ID INT PRIMARY KEY,
+    Personnel_Nom VARCHAR(40),
+    Personnel_Prénom VARCHAR(40),
+    Personnel_Email VARCHAR(250),
+    Personnel_Téléphone VARCHAR(250),
+    Personnel_Role VARCHAR(40),
+    Personnel_Statuts VARCHAR(40),
+    Personnel_Equipe INT,
+    FOREIGN KEY (Personnel_Equipe) REFERENCES équipes(Équipes_ID) 
+);
+
+
+/*
+DROP TABLE équipes;
+DROP TABLE Personnel;
+*/
+INSERT INTO équipes (Équipes_ID, Équipe_Nom, Création_Équipe) VALUES
+(1, 'Equipe x ', '2023-05-01'),
+(2, 'Equipe y', '2023-06-01');
+
+DROP TABLE équipes;
+DROP TABLE Personnel;
+
+INSERT INTO Personnel (Personnel_ID, Personnel_Nom, Personnel_Prénom, Personnel_Email, Personnel_Téléphone, Personnel_Role, Personnel_Statuts, Personnel_Equipe) VALUES
+(3, 'fathi', 'fahed', 'fahed.fathi@email.com', '0645678900', 'Développeur', 'Actif',1),
+(4, 'nousayer', 'hiba', 'hiba.nousayer@email.com', '061167891', 'Analyste', 'Inactif',1),
+(5, 'fathi', 'ayoub', 'ayoub.fathi@email.com', '0645678920', 'Développeur', 'Actif',2),
+(6, 'nousayer', 'iman', 'iman.nousayer@email.com', '061167391', 'Analyste', 'Inactif',1),
+(7, 'fathi', 'anouar', 'anouar.fathi@email.com', '0645678970', 'Développeur', 'Actif',2),
+(8, 'nousayer', 'aya', 'aya.nousayer@email.com', '0611678911', 'Analyste', 'Inactif',1);
+
+SELECT * FROM équipes;
+SELECT * FROM Personnel;
+
+SELECT Personnel_ID, Personnel_Nom, Personnel_Prénom, Personnel_Email, Personnel_Téléphone, Personnel_Role, Personnel_Statuts, Équipe_Nom
+FROM Personnel
+INNER JOIN équipes ON Personnel_Equipe =  Équipes_ID
