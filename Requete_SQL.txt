@@ -1,4 +1,4 @@
-
+Create DATABASE mydata;
 use mydata;
 CREATE TABLE équipes (
     Équipes_ID INT PRIMARY KEY,
